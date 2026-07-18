@@ -17,7 +17,7 @@ Aplikasi live chat dengan AI assistant, bot modules, dan multi-agent support.
 
 ```bash
 git clone https://github.com/123menang/jellchats.git
-cd jellchat-pro
+cd jellchats
 ```
 
 ### 2. Install Dependencies
