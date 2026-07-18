@@ -1,0 +1,21 @@
+{
+    "name": "jellchat/app",
+    "description": "JellChat Pro - Live Chat Application",
+    "type": "project",
+    "require": {
+        "php": ">=8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/Helpers/functions.php"
+        ]
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "echo 'Autoload generated.'"
+        ]
+    }
+}

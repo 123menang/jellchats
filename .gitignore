@@ -1,0 +1,29 @@
+# Database files (berisi data user/conversation)
+database/*.db
+storage/database/*.db
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Uploads (file user)
+uploads/
+public/uploads/
+
+# Runtime logs
+storage/logs/
+*.log
+
+# Composer dependencies
+vendor/
+
+# Archives
+*.tar.gz
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

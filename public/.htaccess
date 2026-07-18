@@ -1,0 +1,27 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirect HTTP to HTTPS (uncomment in production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# Route all requests to public/index.php if not file/dir
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/index.php [QSA,L]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Deny access to database and storage
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+<FilesMatch "\.(db|sqlite|sql|md|log)$">
+    Require all denied
+</FilesMatch>
