@@ -304,7 +304,7 @@ server {
     listen [::]:80;
     server_name $DOMAIN;
 
-    root $TARGET_DIR/public;
+    root $TARGET_DIR;
     index index.php index.html;
 
     add_header X-Frame-Options "SAMEORIGIN" always;
@@ -316,13 +316,17 @@ server {
     gzip_min_length 1000;
 
     location / {
-        try_files \$uri \$uri/ /index.php?\$query_string;
+        try_files \$uri \$uri/ @rewrite;
+    }
+
+    location @rewrite {
+        rewrite ^/(.*)$ /public/index.php?\$query_string;
     }
 
     location ~ \.php\$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)\$;
         fastcgi_pass unix:$PHP_FPM_SOCK;
-        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param SCRIPT_FILENAME \$document_root/public\$fastcgi_script_name;
         include fastcgi_params;
     }
 
